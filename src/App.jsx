@@ -1,18 +1,25 @@
 import { useState, useEffect } from 'react'
 
 import './App.css'
-import ProductTable from './components/ProductTable'
-import ProductForm from './components/ProductForm'
+//import ProductTable from './components/ProductTable'
+//import ProductForm from './components/ProductForm'
+import UserTable from './components/UserTable'
+import UserForm from './components/UserForm'
 
 // CRUD COM JSON SERVER
 
 function App() {  
   const [products, setProducts] = useState([]);
   const [id, setId] = useState("");
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [stock, setStock] = useState("");
+  //const [name, setName] = useState("");
+  //const [price, setPrice] = useState("");
+  //const [stock, setStock] = useState("");
   const [edit, setEdit] = useState(false);
+
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
 
   const url = 'http://localhost:3000/products';
 
@@ -29,9 +36,14 @@ function App() {
   }, []);
 
   const clearForm = () => {
-    setName("");
-    setPrice("");
-    setStock("");
+    //setName("");
+    //setPrice("");
+    //setStock("");
+
+    setUser("");
+    setPass("");
+    setNome("");
+    setEmail("");
   }
 
   // Busca apenas um produto pelo seu id:
@@ -40,10 +52,15 @@ function App() {
     const res = await fetch(url + `/${id}`);
     const data = await res.json();
     // Carrega os dados no formulário para edição:
-    setName(data.name)
-    setPrice(data.price);
-    setStock(data.stock);
+    //setName(data.name)
+    //setPrice(data.price);
+    //setStock(data.stock);
+
     setId(data.id);
+    setUser(data.user)
+    setPass(data.pass);
+    setNome(data.nome);
+    setEmail(data.email);
 
     // Habilita edição:
     setEdit(true);
@@ -56,7 +73,8 @@ function App() {
       headers: {
         "content-type": "application/json"
       },
-      body: JSON.stringify({ name, price, stock })
+      //body: JSON.stringify({ name, price, stock })
+      body: JSON.stringify({ user, pass, nome, email })
     }
 
     // Cria url para buscar todos ou apenas um produto
@@ -100,22 +118,29 @@ function App() {
   }
 
   // Mudança dos estados ao digitar no formulário:
-  const handleName = (e) => {setName(e.target.value)};
-  const handlePrice = (e) => {setPrice(e.target.value)};
-  const handleStock = (e) => {setStock(e.target.value)};
+  //const handleName = (e) => {setName(e.target.value)};
+  //const handlePrice = (e) => {setPrice(e.target.value)};
+  //const handleStock = (e) => {setStock(e.target.value)};
+
+  const handleUser = (e) => {setUser(e.target.value)};
+  const handlePass = (e) => {setPass(e.target.value)};
+  const handleNome= (e) => {setNome(e.target.value)};
+  const handleEmail = (e) => {setEmail(e.target.value)};
 
   return (
     <>
      <h2>CRUD com JSON Server</h2>
      <div>
         {
-          products.length > 0 ? <ProductTable products={products} deleteProduct={deleteProduct} editProduct={getProductById} /> : <h3 style={{marginBottom: '30px'}}>Nenhum produto cadastrado...</h3>
+          products.length > 0 ? <UserTable products={products} deleteProduct={deleteProduct} editProduct={getProductById} /> : <h3 style={{marginBottom: '30px'}}>Nenhum produto cadastrado...</h3>
         }
       </div>
 
-      <ProductForm name={name} price={price} stock={stock} handleName={handleName} handlePrice={handlePrice} handleStock={handleStock} saveProduct={saveProduct}/>
+      <UserForm user={user} pass={pass} nome={nome} email={email} handleUser={handleUser} handlePass={handlePass} handleNome={handleNome} handleEmail={handleEmail} saveProduct={saveProduct}/>
     </>
   )
 }
 
 export default App
+
+//<ProductForm name={name} price={price} stock={stock} handleName={handleName} handlePrice={handlePrice} handleStock={handleStock} saveProduct={saveProduct}/>
