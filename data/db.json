@@ -1,10 +1,18 @@
 {
   "products": [
     {
-      "id": "6476",
-      "user": "Teste",
+      "id": "bb65",
+      "name": "teste sad",
+      "price": "12",
+      "stock": "12"
+    }
+  ],
+  "user": [
+    {
+      "id": "a0fb",
+      "user": "teste",
       "pass": "123",
-      "nome": "julio",
+      "nome": "teste",
       "email": "teste@eemail.com"
     }
   ]
