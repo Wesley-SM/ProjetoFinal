@@ -4,7 +4,7 @@ import './ProductForm.css'
 function UserForm({user, pass, nome, email, handleUser, handlePass, handleNome, handleEmail, saveProduct}) {
     return (
         <div className='container'>
-        <h2>Cadastro de Produtos</h2>
+        <h2>Cadastro de Usuario</h2>
         <form onSubmit={(e) => saveProduct(e)}>
             <label className='form-label' htmlFor="usuario">Usuário:</label>
             <input className='form-input' value={user} type="text" name="usuario" onChange={(e) => handleUser(e)} required/>

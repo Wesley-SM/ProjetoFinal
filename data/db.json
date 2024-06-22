@@ -5,6 +5,18 @@
       "name": "teste sad",
       "price": "12",
       "stock": "12"
+    },
+    {
+      "id": "05c8",
+      "name": "tes",
+      "price": "2",
+      "stock": "1"
+    },
+    {
+      "id": "a290",
+      "name": "dfs",
+      "price": "3",
+      "stock": "2"
     }
   ],
   "user": [

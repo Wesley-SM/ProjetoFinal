@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import ProductTable from './components/ProductTable'
 import ProductForm from './components/ProductForm'
+import { useNavigate } from 'react-router-dom';
 
 // CRUD COM JSON SERVER
 
@@ -49,6 +50,8 @@ function HomeProduct() {
     setEdit(true);
   }
 
+  const navigate = useNavigate();
+
   const saveProduct = async (e) => {
     e.preventDefault();
     const saveRequestParams = {
@@ -70,6 +73,10 @@ function HomeProduct() {
       const newProduct = await res.json();
       // Atualização da tabela:
       setProducts((prevProducts) => [...prevProducts, newProduct]);
+
+     // if(res.status === 201) {
+     //   navigate('/')
+     // }
     }
 
     // Se for edição/atualização de produto já cadastrado:

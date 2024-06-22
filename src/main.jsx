@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomeUser from './HomeUser.jsx'
 import HomeProduct from './HomeProduct.jsx'
 import ErrorPage from './routes/ErrorPage.jsx'
+import HomeLogin from './HomeLogin.jsx'
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <HomeUser />
+        element: <HomeLogin />
       },
       {
         path: '/products',
