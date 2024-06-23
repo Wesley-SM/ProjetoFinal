@@ -4,7 +4,7 @@ export default function UserTable({products, deleteProduct, editProduct}) {
 
     return (
         <div className={classes.table_container}>
-            <h2>Lista de Usuarios</h2>
+            <h2>Lista de Usuários</h2>
             <table className={classes.table}>
                 <thead>
                     <tr>

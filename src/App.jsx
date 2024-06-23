@@ -1,15 +1,20 @@
-import { Outlet } from 'react-router-dom'
-import Navbar from './components/NavBar'
+// App.js
 
-// CRUD COM JSON SERVER
+import { Outlet, useLocation } from 'react-router-dom';
+import Navbar from './components/NavBar';
 
-function App() { 
+function App() {
+  const location = useLocation();
+
+  // Verifica se a localização atual é "/" para não mostrar o Navbar
+  const showNavbar = location.pathname !== '/';
+
   return (
     <>
-      <Navbar />
+      {showNavbar && <Navbar />}
       <Outlet />
-      <p>Footter</p>
     </>
-  )
+  );
 }
-export default App
+
+export default App;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import LoginForm from './components/LoginForm';
+import { useNavigate } from 'react-router-dom';
 
 function HomeLogin() {
   const [user, setUser] = useState("");
@@ -13,20 +14,15 @@ function HomeLogin() {
     "user": [
       {
         "id": "a0fb",
-        "user": "teste",
+        "user": "julio",
         "pass": "123",
         "nome": "teste",
         "email": "teste@eemail.com"
-      },
-      {
-        "id": "a0fc",
-        "user": "teste2",
-        "pass": "1233",
-        "nome": "teste1",
-        "email": "teste1@eemail.com"
       }
     ]
   };
+
+  const navigate = useNavigate();
 
   // Função para buscar dados do usuário pelo username
   const fetchUserData = async (username) => {
@@ -49,13 +45,10 @@ function HomeLogin() {
         setLoginError("Usuário ou senha incorretos. Por favor, tente novamente.");
         setLoading(false);
         return;
+      } else {
+        navigate('/products');
       }
 
-      // Limpa o erro de login se autenticado com sucesso
-      setLoginError("");
-
-      // Redirecionar ou realizar outras ações após o login
-      console.log('Usuário autenticado:', userData);
     } catch (error) {
       console.error('Erro ao tentar fazer login:', error);
       setLoginError("Ocorreu um erro ao tentar fazer login. Por favor, tente novamente mais tarde.");

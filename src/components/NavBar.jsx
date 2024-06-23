@@ -5,6 +5,7 @@ function NavBar() {
     return (
         <div>
             <span style={{padding: '8px'}}><Link to={'/'} className={({ isActive }) => (isActive ? 'active' : "")}>Home</Link></span>
+            <span style={{padding: '8px'}}><Link to={'/users'} className={({ isActive }) => (isActive ? 'active' : "")}>Usuario</Link></span>
             <span style={{padding: '8px'}}><Link to={'/products'} className={({ isActive }) => (isActive ? 'active' : "")}>Produtos</Link></span>
         </div>
     )

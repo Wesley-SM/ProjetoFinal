@@ -111,10 +111,9 @@ function HomeUser() {
 
   return (
     <>
-     <h2>CRUD com JSON Server</h2>
      <div>
         {
-          products.length > 0 ? <UserTable products={products} deleteProduct={deleteProduct} editProduct={getProductById} /> : <h3 style={{marginBottom: '30px'}}>Nenhum produto cadastrado...</h3>
+          products.length > 0 ? <UserTable products={products} deleteProduct={deleteProduct} editProduct={getProductById} /> : <h3 style={{marginBottom: '30px'}}>Nenhum usuário cadastrado...</h3>
         }
       </div>
 
