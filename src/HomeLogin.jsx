@@ -1,37 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import LoginForm from './components/LoginForm';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function HomeLogin() {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [loginError, setLoginError] = useState(""); // Estado para gerenciar mensagens de erro de login
   const [loading, setLoading] = useState(false); // Estado para indicar se o login está em processo
-
-  // Simula dados de usuários do seu db.json
-  const usersData = {
-    "user": [
-      {
-        "id": "a0fb",
-        "user": "julio",
-        "pass": "123",
-        "nome": "teste",
-        "email": "teste@eemail.com"
-      }
-    ]
-  };
-
+  const [userData, setUserData] = useState(null); // Estado para armazenar os dados do usuário
   const navigate = useNavigate();
 
-  // Função para buscar dados do usuário pelo username
+  // Função para buscar dados do usuário pelo username através de uma requisição GET
   const fetchUserData = async (username) => {
-    // Simula um atraso de rede
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // Procura o usuário pelo username nos dados simulados
-    return usersData.user.find(u => u.user === username);
+    try {
+      const response = await axios.get(`http://localhost:3000/user?user=${username}`);
+      return response.data[0]; // Supondo que o servidor responde com um array de usuários e pegamos o primeiro (assumindo que há apenas um usuário com o mesmo username)
+    } catch (error) {
+      console.error('Erro ao buscar dados do usuário:', error);
+      throw new Error('Erro ao buscar dados do usuário');
+    }
   };
+
+  // Efeito para carregar os dados do usuário ao montar o componente
+  useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        const data = await fetchUserData(user);
+        setUserData(data);
+      } catch (error) {
+        console.error('Erro ao carregar dados do usuário:', error);
+      }
+    };
+
+    if (user) {
+      loadUserData();
+    }
+  }, [user]);
 
   // Função para realizar o login
   const loginProduct = async (e) => {
@@ -39,15 +45,17 @@ function HomeLogin() {
     setLoading(true);
 
     try {
-      const userData = await fetchUserData(user);
-
       if (!userData || userData.pass !== pass) {
         setLoginError("Usuário ou senha incorretos. Por favor, tente novamente.");
         setLoading(false);
         return;
-      } else {
-        navigate('/products');
       }
+
+      // Limpa o erro de login se autenticado com sucesso
+      setLoginError("");
+
+      // Redirecionar para /products após o login
+      navigate('/products');
 
     } catch (error) {
       console.error('Erro ao tentar fazer login:', error);
