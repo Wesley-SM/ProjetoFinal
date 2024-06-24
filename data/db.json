@@ -7,16 +7,10 @@
       "stock": "12"
     },
     {
-      "id": "05c8",
-      "name": "tes",
-      "price": "2",
-      "stock": "1"
-    },
-    {
-      "id": "a290",
-      "name": "dfs",
+      "name": "uva",
       "price": "3",
-      "stock": "2"
+      "stock": "10",
+      "id": "16f2"
     }
   ],
   "user": [
@@ -26,6 +20,13 @@
       "pass": "123",
       "nome": "teste",
       "email": "teste@eemail.com"
+    },
+    {
+      "id": "95ea",
+      "user": "julio",
+      "pass": "123",
+      "nome": "julio",
+      "email": "julio@hotmail.com"
     }
   ]
 }

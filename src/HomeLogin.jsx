@@ -16,14 +16,14 @@ function HomeLogin() {
   const fetchUserData = async (username) => {
     try {
       const response = await axios.get(`http://localhost:3000/user?user=${username}`);
-      return response.data[0]; // Supondo que o servidor responde com um array de usuários e pegamos o primeiro (assumindo que há apenas um usuário com o mesmo username)
+      return response.data[0]; 
     } catch (error) {
       console.error('Erro ao buscar dados do usuário:', error);
       throw new Error('Erro ao buscar dados do usuário');
     }
   };
 
-  // Efeito para carregar os dados do usuário ao montar o componente
+  //carregar os dados do usuário
   useEffect(() => {
     const loadUserData = async () => {
       try {
@@ -71,14 +71,7 @@ function HomeLogin() {
 
   return (
     <>
-      <LoginForm
-        user={user}
-        pass={pass}
-        handleUser={handleUser}
-        handlePass={handlePass}
-        loginProduct={loginProduct}
-        loading={loading}
-      />
+      <LoginForm user={user} pass={pass} handleUser={handleUser} handlePass={handlePass} loginProduct={loginProduct}loading={loading}/>
 
       {/* Exibe mensagem de erro de login, se houver */}
       {loginError && <p style={{ color: 'red' }}>{loginError}</p>}
